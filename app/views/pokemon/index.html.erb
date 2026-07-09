@@ -1,13 +1,41 @@
-<h1>All Pokemon</h1>
+<h1>Pokédex</h1>
 
+<%= form_with url: pokemon_index_path,
+              method: :get,
+              local: true do |f| %>
+
+  <%= f.text_field :search,
+      value: params[:search],
+      placeholder: "Search Pokémon..." %>
+
+  <%= f.submit "Search" %>
+
+<% end %>
+
+<hr>
 <ul>
-  <% @pokemon.each do |pokemon| %>
+<% @pokemon.each do |pokemon| %>
 
-    <li>
+<div class="pokemon-card">
 
-      <%= link_to pokemon.name, pokemon_path(pokemon) %>
+    <img src="<%= pokemon.sprite %>">
 
-    </li>
+    <h3>
+      <%= link_to pokemon.name,
+                  pokemon_path(pokemon) %>
+    </h3>
 
-  <% end %>
+    <p>
+      #<%= pokemon.pokedex_number %>
+    </p>
+
+</div>
+
+<% end %>
+
+<%= paginate @pokemon %>
 </ul>
+
+<div class="mt-4">
+  <%= paginate @pokemon %>
+</div>

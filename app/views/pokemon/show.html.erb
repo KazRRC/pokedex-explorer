@@ -1,23 +1,67 @@
+<div class="row">
+
+<div class="col-md-4">
+
+<img
+src="<%= @pokemon.sprite %>"
+class="img-fluid">
+
+</div>
+
+<div class="col-md-8">
+
 <h1><%= @pokemon.name %></h1>
 
-<p>Pokedex #: <%= @pokemon.pokedex_number %></p>
-
-<p>Height: <%= @pokemon.height %></p>
-
-<p>Weight: <%= @pokemon.weight %></p>
-
-<p>Region:
-<%= @pokemon.region.name %>
+<p>
+<strong>Pokedex Number:</strong>
+<%= @pokemon.pokedex_number %>
 </p>
 
-<p>Types:</p>
+<p>
+<strong>Height:</strong>
+<%= @pokemon.height %>
+</p>
 
-<ul>
+<p>
+<strong>Weight:</strong>
+<%= @pokemon.weight %>
+</p>
+
+<p>
+
+<strong>Region:</strong>
+
+<%= link_to @pokemon.region.name,
+            region_path(@pokemon.region) %>
+
+</p>
+
+<h4>Types</h4>
+
 <% @pokemon.types.each do |type| %>
 
-<li><%= type.name %></li>
+<span class="badge bg-primary">
+
+<%= link_to type.name,
+            type_path(type),
+            class: "text-white text-decoration-none" %>
+
+</span>
 
 <% end %>
+
+<h4 class="mt-3">Abilities</h4>
+
+<ul>
+
+<% @pokemon.abilities.each do |ability| %>
+
+<li><%= ability.name %></li>
+
+<% end %>
+
 </ul>
 
-<img src="<%= @pokemon.sprite %>">
+</div>
+
+</div>

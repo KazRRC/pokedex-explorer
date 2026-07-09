@@ -1,5 +1,6 @@
 gem "httparty"
 gem "faker"
+gem "kaminari"
 
 source "https://rubygems.org"
 
