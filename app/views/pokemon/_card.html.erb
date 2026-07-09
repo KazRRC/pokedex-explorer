@@ -1,0 +1,18 @@
+<div class="pokemon-card">
+
+  <% if pokemon.sprite.present? %>
+    <%= image_tag pokemon.sprite, alt: pokemon.name %>
+  <% end %>
+  <h3>
+    <%= link_to pokemon.name, pokemon_path(pokemon) %>
+  </h3>
+  <p>#<%= pokemon.pokedex_number %></p>
+  <p>
+    <% pokemon.types.each do |type| %>
+      <span class="type-badge">
+        <%= type.name %>
+      </span>
+    <% end %>
+  </p>
+
+</div>

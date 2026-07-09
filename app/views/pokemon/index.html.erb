@@ -4,15 +4,31 @@
               method: :get,
               local: true do |f| %>
 
-  <%= f.text_field :search,
-      value: params[:search],
-      placeholder: "Search Pokémon..." %>
+  <div>
+    <%= f.label :search, "Search Pokémon" %><br>
+    <%= f.text_field :search,
+          value: params[:search] %>
+  </div>
+  <br>
+  <div>
 
-  <%= f.submit "Search" %>
+    <%= f.label :type_id, "Filter by Type" %><br>
 
+    <%= f.collection_select(
+          :type_id,
+          @types,
+          :id,
+          :name,
+          { include_blank: "All Types" }
+        ) %>
+
+  </div>
+  <br>
+  <%= f.submit "Apply Filters" %>
 <% end %>
 
 <hr>
+
 <ul>
 <% @pokemon.each do |pokemon| %>
 

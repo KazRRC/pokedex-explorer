@@ -1,20 +1,25 @@
 class PokemonController < ApplicationController
 def index
+  @types = Type.order(:name)
+
+  @pokemon = Pokemon.includes(:types, :region)
+                    .order(:pokedex_number)
 
   if params[:search].present?
-
-    @pokemon = Pokemon
-                  .where("name LIKE ?", "%#{params[:search]}%")
-                  .order(:pokedex_number)
-
-  else
-
-    @pokemon = Pokemon.order(:pokedex_number)
-
+    @pokemon = @pokemon.where(
+      "LOWER(name) LIKE ?",
+      "%#{params[:search].downcase}%"
+    )
   end
 
-  @pokemon = @pokemon.page(params[:page]).per(20)
+  if params[:type_id].present?
+    @pokemon = @pokemon.joins(:types)
+                       .where(types: { id: params[:type_id] })
+  end
 
+  @pokemon = @pokemon.distinct
+                     .page(params[:page])
+                     .per(20)
 end
 
   def show
