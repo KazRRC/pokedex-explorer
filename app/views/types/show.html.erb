@@ -1,2 +1,20 @@
-<h1>Types#show</h1>
-<p>Find me in app/views/types/show.html.erb</p>
+<h1><%= @type.name %> Pokémon</h1>
+
+<p>
+  Total Pokémon: <%= @pokemon.count %>
+</p>
+
+<ul>
+  <% @pokemon.each do |pokemon| %>
+
+    <li>
+
+      <%= image_tag pokemon.sprite,
+          width: 50 if pokemon.sprite.present? %>
+
+      <%= link_to pokemon.name, pokemon_path(pokemon) %>
+
+    </li>
+
+  <% end %>
+</ul>
