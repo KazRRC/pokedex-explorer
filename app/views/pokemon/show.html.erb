@@ -1,0 +1,23 @@
+<h1><%= @pokemon.name %></h1>
+
+<p>Pokedex #: <%= @pokemon.pokedex_number %></p>
+
+<p>Height: <%= @pokemon.height %></p>
+
+<p>Weight: <%= @pokemon.weight %></p>
+
+<p>Region:
+<%= @pokemon.region.name %>
+</p>
+
+<p>Types:</p>
+
+<ul>
+<% @pokemon.types.each do |type| %>
+
+<li><%= type.name %></li>
+
+<% end %>
+</ul>
+
+<img src="<%= @pokemon.sprite %>">
