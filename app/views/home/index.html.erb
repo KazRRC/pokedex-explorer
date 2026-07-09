@@ -1,34 +1,62 @@
-<div class="text-center">
-  <h1 class="display-4">Pokédex Explorer</h1>
-  <p class="lead">
-    Browse the first 151 Pokémon from the Kanto region.
-  </p>
+<h1>Pokédex Explorer</h1>
+
+<p>
+  Explore Pokémon, types, regions, and abilities.
+</p>
+
+
+<h2>Statistics</h2>
+
+<div class="stats">
+
+  <div class="stat-card">
+    <h3><%= @pokemon_count %></h3>
+    <p>Pokémon</p>
+  </div>
+
+
+  <div class="stat-card">
+    <h3><%= @type_count %></h3>
+    <p>Types</p>
+  </div>
+
+
+  <div class="stat-card">
+    <h3><%= @region_count %></h3>
+    <p>Regions</p>
+  </div>
+
 </div>
 
-<div class="row mt-5">
-  <div class="col-md-4">
-    <div class="card text-center">
-      <div class="card-body">
-        <h2><%= @pokemon_count %></h2>
-        <p>Pokemon</p>
-      </div>
-    </div>
+
+<h2>Featured Pokémon</h2>
+
+<div class="pokemon-grid">
+
+<% @featured_pokemon.each do |pokemon| %>
+
+  <div class="pokemon-card">
+
+    <%= image_tag pokemon.sprite if pokemon.sprite.present? %>
+
+    <h3>
+      <%= link_to pokemon.name,
+          pokemon_path(pokemon) %>
+    </h3>
+
+    <p>
+      #<%= pokemon.pokedex_number %>
+    </p>
+
   </div>
 
-  <div class="col-md-4">
-    <div class="card text-center">
-      <div class="card-body">
-        <h2><%= @type_count %></h2>
-        <p>Types</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card text-center">
-      <div class="card-body">
-        <h2><%= @ability_count %></h2>
-        <p>Abilities</p>
-      </div>
-    </div>
-  </div>
+<% end %>
+
 </div>
+
+
+<br>
+
+<%= link_to "Find a Random Pokémon",
+    random_path,
+    class: "button" %>

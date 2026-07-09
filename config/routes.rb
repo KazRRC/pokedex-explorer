@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :types, only: [:index, :show]
   resources :regions, only: [:index, :show]
 
+  get "random", to: "pokemon#random"
   get "about", to: "about#index"
 end

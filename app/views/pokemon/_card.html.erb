@@ -9,7 +9,7 @@
   <p>#<%= pokemon.pokedex_number %></p>
   <p>
     <% pokemon.types.each do |type| %>
-      <span class="type-badge">
+      <span class="type-badge <%= type.name.downcase %>">
         <%= type.name %>
       </span>
     <% end %>
