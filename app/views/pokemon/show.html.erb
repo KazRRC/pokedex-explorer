@@ -1,67 +1,49 @@
-<div class="row">
+<h1>
+  <%= @pokemon.name.capitalize %>
+</h1>
+<div class="pokemon-detail">
+  <div>
+    <% if @pokemon.sprite.present? %>
+      <%= image_tag @pokemon.sprite,
+          alt: @pokemon.name,
+          class: "large-sprite" %>
+    <% end %>
+  </div>
+  <div>
+    <h2>
+      Pokedex #<%= @pokemon.pokedex_number %>
+    </h2>
+    <p>
+      <strong>Height:</strong>
+      <%= @pokemon.height %>
+    </p>
+    <p>
+      <strong>Weight:</strong>
+      <%= @pokemon.weight %>
+    </p>
+    <p>
+      <strong>Region:</strong>
+      <%= link_to @pokemon.region.name,
+          region_path(@pokemon.region) %>
+    </p>
+    <h3>Types</h3>
+    <% @pokemon.types.each do |type| %>
 
-<div class="col-md-4">
+      <span class="type-badge <%= type.name.downcase %>">
+        <%= type.name %>
+      </span>
 
-<img
-src="<%= @pokemon.sprite %>"
-class="img-fluid">
-
+    <% end %>
+    <h3>Abilities</h3>
+    <ul>
+      <% @pokemon.abilities.each do |ability| %>
+        <li>
+          <%= ability.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-
-<div class="col-md-8">
-
-<h1><%= @pokemon.name %></h1>
-
-<p>
-<strong>Pokedex Number:</strong>
-<%= @pokemon.pokedex_number %>
-</p>
-
-<p>
-<strong>Height:</strong>
-<%= @pokemon.height %>
-</p>
-
-<p>
-<strong>Weight:</strong>
-<%= @pokemon.weight %>
-</p>
-
-<p>
-
-<strong>Region:</strong>
-
-<%= link_to @pokemon.region.name,
-            region_path(@pokemon.region) %>
-
-</p>
-
-<h4>Types</h4>
-
-<% @pokemon.types.each do |type| %>
-
-<span class="badge bg-primary">
-
-<%= link_to type.name,
-            type_path(type),
-            class: "text-white text-decoration-none" %>
-
-</span>
-
-<% end %>
-
-<h4 class="mt-3">Abilities</h4>
-
-<ul>
-
-<% @pokemon.abilities.each do |ability| %>
-
-<li><%= ability.name %></li>
-
-<% end %>
-
-</ul>
-
-</div>
-
-</div>
+<br>
+<%= link_to "Back to Pokedex",
+    pokemon_index_path %>

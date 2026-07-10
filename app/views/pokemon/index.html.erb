@@ -1,11 +1,11 @@
-<h1>Pokédex</h1>
+<h1>Pokedex</h1>
 
 <%= form_with url: pokemon_index_path,
               method: :get,
               local: true do |f| %>
 
   <div>
-    <%= f.label :search, "Search Pokémon" %><br>
+    <%= f.label :search, "Search Pokemon" %><br>
     <%= f.text_field :search,
           value: params[:search] %>
   </div>
@@ -30,6 +30,14 @@
 <hr>
 
 <ul>
+<% if @pokemon.empty? %>
+  <h2>
+    No Pokemon found.
+  </h2>
+  <p>
+    Try another search.
+  </p>
+<% end %>
 <% @pokemon.each do |pokemon| %>
 
 <div class="pokemon-card">

@@ -1,21 +1,14 @@
 <h1><%= @region.name %> Region</h1>
-
 <p>
-Total Pokémon:
+Total Pokemon:
 <%= @pokemon.count %>
 </p>
-
 <ul>
-
 <% @pokemon.each do |pokemon| %>
-
 <li>
-
 <%= link_to pokemon.name,
             pokemon_path(pokemon) %>
 
 </li>
-
 <% end %>
-
 </ul>

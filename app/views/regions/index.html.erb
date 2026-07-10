@@ -1,16 +1,10 @@
 <h1>Regions</h1>
-
 <ul>
-
 <% @regions.each do |region| %>
-
 <li>
-
 <%= link_to region.name,
             region_path(region) %>
 
 </li>
-
 <% end %>
-
 </ul>

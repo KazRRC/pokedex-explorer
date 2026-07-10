@@ -172,3 +172,28 @@ img {
 .button:hover {
   background: #990000;
 }
+
+.pokemon-detail {
+  display: flex;
+  gap: 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px #ccc;
+}
+
+
+.large-sprite {
+  width: 250px;
+}
+
+
+.pokemon-detail h2 {
+  margin-top: 0;
+}
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
